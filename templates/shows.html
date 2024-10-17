@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Shows {% endblock title %}
+{% block body %}
+
+
+<div class="container my-3">
+    <u>
+        <h2 class="text-center">--- MY TO DO LIST ---</h2>
+    </u>
+    {% if allTodo|length == 0 %}
+
+    <div class="alert alert-dark" role="alert">
+        Please add some tasks to your to-do list. <a href="{{url_for('Home')}}">Click here to add a task</a>
+
+
+    </div>
+    {% else %}
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Jinja For Loop FOr Display Record -->
+            {% for todo in allTodo %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.desc }}</td>
+                <td>{{ todo.date_created }}</td>
+                <td>
+                    <a href="/Update/{{ todo.sno }}" type="button"
+                        class="btn btn-outline-success btn-sm mx-1">Update</a>
+                    <a href="/Delete/{{ todo.sno }}" type="button" class="btn btn-outline-danger btn-sm mx-1">Delete</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+{% endblock body %}
