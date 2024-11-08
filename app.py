@@ -65,7 +65,7 @@ def Docs():
     return render_template('docs.html')
 
 @app.route('/Blogs')
-def Blogs():
+def Blogs(): 
     return render_template('blogs.html')
 
 @app.route('/Shows')
